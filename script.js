@@ -7,7 +7,7 @@ async function getData ()
         "user-key": "ea3a811e77479d2e846d38a5a819bf61",
         "accept":"application/jason"
       }
-    }).then (respone =>  data = respone.json())
+    }).then (respone =>  data = response.json())
       .then(dat=>{
           console.log(dat);
           console.log(dat["restaurants"]);
@@ -15,3 +15,6 @@ async function getData ()
 }
 let output = getData();
   // console.log(output);
+
+
+  console.log("working");
