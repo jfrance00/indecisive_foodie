@@ -21,7 +21,7 @@
           position:absolute;
 
         }
-        .bucket{
+        #bucket{
 
           width:100px;
           height:100px;
@@ -31,9 +31,7 @@
   </head>
   <body>
   <div class = tags>
-
-
-        <div class="tag"  draggable="true" id ="British">British</div>
+        <div class="tag" id ="British">British</div>
         <!-- <div class="tag" draggable="true" id ="Wifi"  onmousestart="start(event,'Wifi');">Wifi</div>
         <div class="tag" draggable="true" id ="Indina"  onmousestart="start(event,'Indina');">Indina</div>
         <div class="tag" draggable="true"  id ="Sushi" onmousestart="start(event,'Sushi');">Sushi</div>
@@ -41,7 +39,7 @@
         <div class="tag" draggable="true"  id ="American" onmousestart="start(event,'American');">American</div> -->
         </div>
 
-      <div class = "bucket" ondragover="over(event);" ondrop="drop(event);"></div>
+      <div id = "bucket"></div>
       <script src="script.js"></script>
   </body>
 </html>
