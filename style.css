@@ -58,3 +58,23 @@ button {
   /* border:2px solid black; */
     clip-path: polygon(0 0, 100% 0, 72% 100%, 33% 100%);
 }
+
+.btn-crave{
+  width:5em;
+  height:2em;
+  font-size:1.5em;
+}
+.hideScreen{
+  transition:all 1s linear;
+  transform:translate(-1250px, 0px);
+
+}
+.collapse{
+  height:0px !important;
+}
+.showScreen{
+
+  transition: 1s linear;
+  transform: translate(0px, 0px);
+
+}
