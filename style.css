@@ -1,0 +1,22 @@
+body {
+  background-color: #FFFCDE;
+}
+
+h1{
+  text-align: center;
+  padding-top: 2em;
+}
+
+#container {
+  margin: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  height: 8em;
+  width: 20em;
+  margin-top: 5%
+  margin-bottom: 5%;
+}

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Indecisive Foodie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+<!--navbar-->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Indecisive Foodies</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--End of Navbar Start of Page-->
+
+    <div id="heading">
+      <h1 id="head_text">Do You Have a Craving?</h1>   <!--header-->
+    </div>
+    <div id="container">   <!--button containers-->
+      <div class="row">
+        <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
+            <button id="have_crave"  type="button" class="btn btn-danger landing" onclick="select_crave()">I have a craving!</button> <!--select_crave() will trigger the change to select crave-->
+        </div>
+        <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
+            <button id="unsure" type="button" class="btn btn-warning landing" onclick="random_choice()">Try something new!</button> <!--random_choice() will give user a random restaurant in London -->
+        </div>
+      </div> <!--close row-->
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
