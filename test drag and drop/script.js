@@ -65,6 +65,8 @@ function addListeners(elem){
         active=false;//the element is diactivated for movment
         let bool = checkIfInsideBucket(e.target.id) // check if the buckt and the element are overlapping
       });
+
+
       function checkIfInsideBucket(id){
         let bucket = document.getElementById("bucket");
         let coordBucket = bucket.getBoundingClientRect(); // get bucket coordinates
