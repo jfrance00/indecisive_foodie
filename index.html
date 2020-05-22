@@ -33,26 +33,47 @@
     <div id="heading">
       <h1 id="head_text">Do You Have a Craving?</h1>   <!--header-->
     </div>
-    <div id="container" class="container ">   <!--button containers-->
-      <div class="row before-tags">
-        <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
-            <button id="have_crave"  type="button" class="btn btn-danger landing" onclick="select_crave()">I have a craving!</button> <!--select_crave() will trigger the change to select crave-->
-        </div>
-        <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
-            <button id="unsure" type="button" class="btn btn-warning landing" onclick="random_choice()">Try something new!</button> <!--random_choice() will give user a random restaurant in London -->
-        </div>
-      </div> <!--close row-->
-            <div class="container for-tags" id="forTags">
-                <div class = "row" id="row">
-                  <div id = "tags" class = "tags">
-                  </div>
-                  <div class="bucket" id = "bucket">
+          <div id="container" class="container ">   <!--button containers-->
+            <div class="row before-tags">
+              <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
+                  <button id="have_crave"  type="button" class="btn btn-danger landing" onclick="select_crave()">I have a craving!</button> <!--select_crave() will trigger the change to select crave-->
+              </div>
+              <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
+                  <button id="unsure" type="button" class="btn btn-warning landing" onclick="random_choice()">Try something new!</button> <!--random_choice() will give user a random restaurant in London -->
+              </div>
+            </div> <!--close row-->
+                  <div class="container for-tags" id="forTags">
+                      <div class = "row" id="row">
+                        <div id = "tags" class = "tags">
+                        </div>
+                        <div class="bucket-contain">
 
 
+                        <div class="bucket" id = "bucket">
+
+                        </div>
+                        <button class="btn btn-primary btn-sm btn-crave" type ="button" onclick="showData();"> Crave me!</button>
+                          </div>
+                      </div>
                   </div>
-                </div>
-            </div>
-    </div>
+          </div>
+
+          <div  class="container hideScreen" id="data">
+
+            <table id="sampleTable" class="table table-hover">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Price Range</th>
+              </tr>
+              <tr>
+                  <th scope="row">1</th>
+                  <td>Row2 cell1</td>
+                  <td>Row2 cell2</td>
+              </tr>
+              </table>
+          </div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
