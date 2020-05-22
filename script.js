@@ -213,13 +213,18 @@ function showData(){
 }
 
 function printResults(data){
-    console.log(data);
-    console.log(data[0]["restaurant"]);
+    // console.log(data);
+    // console.log(data[0]["restaurant"]);
     let card;
     let div = document.getElementById("data");
     for(x of data){
+      console.log(x);
       card = createCard();
-      
+      card.firstElementChild.innerHTML =x["restaurant"]["cuisines"];
+      card.lastElementChild.firstElementChild.innerHTML=x["restaurant"]["name"];
+      card.lastElementChild.children[2].innerHTML = "Full Review";
+      card.lastElementChild.children[2].href=x["restaurant"]["url"];
+      div.appendChild(card);
     }
 
 }
@@ -235,16 +240,17 @@ function createCard(){
 
      h.classList.add("card-title");
      p.classList.add("card-text");
-     a.classList.add("btn btn-primary");
+     a.classList.add("btn");
+     a.setAttribute('target', '_blank');
+     a.classList.add("btn-primary");
      cardB.classList.add("card-body");
      cardH.classList.add("card-header");
      card.classList.add("card");
+     card.classList.add("mt-2");
      cardB.appendChild(h);
      cardB.appendChild(p);
      cardB.appendChild(a);
      card.appendChild(cardH);
      card.appendChild(cardB);
-
-
      return card;
 }
