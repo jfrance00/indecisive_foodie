@@ -14,6 +14,7 @@ function initTags(c,a){
   for (z of cousine){ //loop for coursine tags
       elem = document.createElement("div");
       elem.classList.add("tag");
+      elem.classList.add("cousine");
       elem.id = z;
       elem.style.left=left+"px";
       elem.value = z;
@@ -27,6 +28,7 @@ function initTags(c,a){
   for (z of ambiance){
       elem = document.createElement("div")
       elem.classList.add("tag");
+      elem.classList.add("ambiance");
       elem.id = z;
       elem.style.left=left+"px";
       elem.value = z;
@@ -66,7 +68,6 @@ function addListeners(elem){
         let bool = checkIfInsideBucket(e.target.id) // check if the buckt and the element are overlapping
       });
 
-
       function checkIfInsideBucket(id){
         let bucket = document.getElementById("bucket");
         let coordBucket = bucket.getBoundingClientRect(); // get bucket coordinates
@@ -75,6 +76,7 @@ function addListeners(elem){
           if(coordBucket["top"] <= coordTag["top"] && coordBucket["left"] <= coordTag["left"] && coordBucket["bottom"] >= coordTag["bottom"] && coordBucket["right"] >= coordTag["right"]){
                 //check if overlapping
               console.log("tag inside");
+              addUserInputToArray()
               return true;
           }
           else{
@@ -88,3 +90,40 @@ function addListeners(elem){
 
 
 }
+// cuisines: british 133, french 45, italian 55
+// ambiance wifi, bar, cash
+
+
+function addUserInputToArray(){
+  let userInput = [];
+  let ambiance = document.getElement
+    if()
+  return userInput
+}
+// https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi&cuisines=133
+// https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi%2C%20bar&cuisines=133
+// https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi%2C%20cash&cuisines=133%2C%2045
+
+
+
+function get_search(){
+
+}
+
+const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q="
+async function getData ()
+{
+  return data = await fetch(url,{
+      method: "GET",
+      headers: {
+        "user-key": "ea3a811e77479d2e846d38a5a819bf61",
+        "accept":"application/jason"
+      }
+    }).then (respone =>  data = response.json())
+      .then(dat=>{
+          console.log(dat);
+          console.log(dat["restaurants"]);
+      } )
+}
+let output = getData();
+  // console.log(output);
