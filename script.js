@@ -1,4 +1,5 @@
 //************************landing page***************************
+console.log("working");
 function select_crave(){               //function to run when user knows what they want
 
   let bool = true;
@@ -43,7 +44,7 @@ function fade_out(){                                     //fade out landing opti
 
 //************************Dragging and dropping***************************
 function createTags(){
-    let cousine=['british','french','italin'];
+    let cousine=['british','french','italian'];
     let ambiance = ['wifi','bar','cash'];
     let x = 0; // initial X when moving an element
     let y = 0;// initital Y when moving an element
@@ -131,10 +132,12 @@ function createTags(){
               if(coordBucket["top"] <= coordTag["top"] && coordBucket["left"] <= coordTag["left"] && coordBucket["bottom"] >= coordTag["bottom"] && coordBucket["right"] >= coordTag["right"]){
                     //check if overlapping
                   console.log("tag inside");
+                  addUserInputToArray(id)
                   return true;
               }
               else{
                 console.log("tag not inside");
+                removeUserInput(id)
                 return false;
               };
             return false;
@@ -142,8 +145,66 @@ function createTags(){
     }
 }
 
-//************************end of dragging and dropping***************************
-//
+// ************************end of dragging and dropping***************************
+<<<<<<< jfoodie
+
+
+//***********************start of working with API********************************
+
+let addFilter = [];    // array variable that needs to be used for multiple  funciton calls
+
+function addUserInputToArray(id){
+  console.log("making array");        //TODO: need to check for duplicated
+  if (addFilter.includes(id)){
+    return;
+  } else {
+   addFilter.push(id);
+   console.log(addFilter);
+   return addFilter;
+  }
+}
+
+function removeUserInput(id){           //removes object from array on user action
+  if(addFilter.includes(id)){
+    console.log("was in bucket");
+    let index = addFilter.indexOf(id);
+    addFilter.splice(index, 1);
+    console.log(addFilter);
+    return addFilter
+    }
+  }
+
+
+function createURL(){        //will be triggered by button when user is finished
+  const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2C";
+
+}
+
+
+const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2C";
+//https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi%2C%20british%2C%20bar
+//city%20view
+async function getData ()
+{
+  return data = await fetch(url,{
+      method: "GET",
+      headers: {
+        "user-key": "ea3a811e77479d2e846d38a5a819bf61",
+        "accept":"application/jason"
+      }
+     }).then (respone =>  data = response.json())
+       .then(dat=>{
+           console.log(dat);
+           console.log(dat["restaurants"]);
+       } )
+ }
+ let output = getData();
+   // console.log(output);
+
+
+   console.log("working");
+=======
+
 // const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2Ccity%20view";
 // async function getData ()
 // {
@@ -161,8 +222,8 @@ function createTags(){
 // }
 // let output = getData();
 //   // console.log(output);
-//
-//
+
+
 //   console.log("working");
 
 
@@ -176,3 +237,4 @@ function showData(){
   elem.classList.add("showScreen");
 
 }
+>>>>>>> master
