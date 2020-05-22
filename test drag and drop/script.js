@@ -2,16 +2,17 @@ let cousine=['british','french','italin'];
 let ambiance = ['wifi','bar','cash'];
 var x = 0; // initial X when moving an element
 var y = 0;// initital Y when moving an element
-var active=false;
+var active=false; // setting the active movalbe object
 
 
-initTags(cousine,ambiance);
+initTags(cousine,ambiance);//call function that creates the tags
+
 function initTags(c,a){
   let elem;
-  let left = 100;
+  let left = 100; // initial left position
   let tags = document.getElementById("tags")
-  for (z of cousine){
-      elem = document.createElement("div")
+  for (z of cousine){ //loop for coursine tags
+      elem = document.createElement("div");
       elem.classList.add("tag");
       elem.id = z;
       elem.style.left=left+"px";
