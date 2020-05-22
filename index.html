@@ -8,7 +8,7 @@
   </head>
   <body>
 <!--navbar-->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Indecisive Foodies</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -27,12 +27,20 @@
     </ul>
   </div>
 </nav>
+<!--End of Navbar Start of Page-->
+
     <div id="heading">
-      <h1 id="head_text">Do You Have a Craving?</h1>
+      <h1 id="head_text">Do You Have a Craving?</h1>   <!--header-->
     </div>
-    <div id="container">
-      <button id="have_crave" type="button" class="btn btn-danger">I have a craving!</button>
-      <button id="unsure" type="button" class="btn btn-warning">I don't know what I want</button>
+    <div id="container">   <!--button containers-->
+      <div class="row">
+        <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
+            <button id="have_crave"  type="button" class="btn btn-danger landing" onclick="select_crave()">I have a craving!</button> <!--select_crave() will trigger the change to select crave-->
+        </div>
+        <div class="col col-md-6 col-sm-12 col-xs-12 d-md-block">
+            <button id="unsure" type="button" class="btn btn-warning landing" onclick="random_choice()">Try something new!</button> <!--random_choice() will give user a random restaurant in London -->
+        </div>
+      </div> <!--close row-->
     </div>
 
     <script src="script.js"></script>
