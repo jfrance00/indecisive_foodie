@@ -78,3 +78,7 @@ button {
   transform: translate(0px, 0px);
 
 }
+
+.carousel-item{
+height:400px;
+}

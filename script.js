@@ -1,5 +1,5 @@
 //************************landing page***************************
-console.log("working");
+
 function select_crave(){               //function to run when user knows what they want
 
   let bool = true;
@@ -59,10 +59,6 @@ function createTags(){
       let tagY = tags.getBoundingClientRect().top; //initial top possition
       let tagXinit = tagX;
       let tagYinit = tagY;
-      console.log(tagXinit);
-      console.log(tagYinit);
-        console.log(tags.getBoundingClientRect());
-      console.log("!!!");
       for (z of cousine){ //loop for coursine tags
           elem = document.createElement("div");
           elem.classList.add("tag");
@@ -76,8 +72,7 @@ function createTags(){
           addListeners(elem);
           tags.appendChild(elem);
           tagX = tagX + 100;
-          console.log(elem.style.left);
-          console.log(  elem.style.top);
+
       }
       tagY = tagYinit+100;
       tagX = tagXinit;
@@ -131,12 +126,10 @@ function createTags(){
             let coordTag = tag.getBoundingClientRect();  //get element coordingates
               if(coordBucket["top"] <= coordTag["top"] && coordBucket["left"] <= coordTag["left"] && coordBucket["bottom"] >= coordTag["bottom"] && coordBucket["right"] >= coordTag["right"]){
                     //check if overlapping
-                  console.log("tag inside");
                   addUserInputToArray(id)
                   return true;
               }
               else{
-                console.log("tag not inside");
                 removeUserInput(id)
                 return false;
               };
@@ -175,58 +168,40 @@ function removeUserInput(id){           //removes object from array on user acti
 
 
 function createURL(){        //will be triggered by button when user is finished
-  const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2C";
 
+  const url_head = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=";
+  let link = url_head;
+  for (let i =0; i<addFilter.length;i++){
+    if( i<addFilter.length-1){
+        link=link+addFilter[i]+"%2C%20";
+      }
+      else{
+        link=link+addFilter[i];
+      }
+  }
+  getData(link);
 }
 
 
-const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2C";
-//https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi%2C%20british%2C%20bar
-//city%20view
-async function getData ()
+// const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2C";
+async function getData (url)
 {
-  return data = await fetch(url,{
+   return dat = await fetch(url,{
       method: "GET",
       headers: {
         "user-key": "ea3a811e77479d2e846d38a5a819bf61",
         "accept":"application/jason"
       }
-     }).then (respone =>  data = response.json())
-       .then(dat=>{
-           console.log(dat);
-           console.log(dat["restaurants"]);
+    }).then (response =>  data = response.json())
+      .then(dat=>{
+
+        printResults(dat["restaurants"]);
        } )
  }
- let output = getData();
-   // console.log(output);
-
-
-   console.log("working");
-
-
-// const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2Ccity%20view";
-// async function getData ()
-// {
-//   return data = await fetch(url,{
-//       method: "GET",
-//       headers: {
-//         "user-key": "ea3a811e77479d2e846d38a5a819bf61",
-//         "accept":"application/jason"
-//       }
-//     }).then (respone =>  data = response.json())
-//       .then(dat=>{
-//           console.log(dat);
-//           console.log(dat["restaurants"]);
-//       } )
-// }
-// let output = getData();
-//   // console.log(output);
-
-
-//   console.log("working");
-
-
 function showData(){
+
+  let data = createURL();
+
 
   let elem = document.getElementById("container");
   elem.classList.add("hideScreen");
@@ -235,4 +210,41 @@ function showData(){
   elem.classList.remove("hideScreen");
   elem.classList.add("showScreen");
 
+}
+
+function printResults(data){
+    console.log(data);
+    console.log(data[0]["restaurant"]);
+    let card;
+    let div = document.getElementById("data");
+    for(x of data){
+      card = createCard();
+      
+    }
+
+}
+
+function createCard(){
+
+    let  card =document.createElement("div");
+    let  cardH =document.createElement("div");
+    let  cardB =document.createElement("div");
+    let  h = document.createElement("h5");
+    let  p = document.createElement("p");
+    let  a = document.createElement("a");
+
+     h.classList.add("card-title");
+     p.classList.add("card-text");
+     a.classList.add("btn btn-primary");
+     cardB.classList.add("card-body");
+     cardH.classList.add("card-header");
+     card.classList.add("card");
+     cardB.appendChild(h);
+     cardB.appendChild(p);
+     cardB.appendChild(a);
+     card.appendChild(cardH);
+     card.appendChild(cardB);
+
+
+     return card;
 }
