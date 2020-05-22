@@ -146,7 +146,6 @@ function createTags(){
 }
 
 // ************************end of dragging and dropping***************************
-<<<<<<< jfoodie
 
 
 //***********************start of working with API********************************
@@ -203,7 +202,7 @@ async function getData ()
 
 
    console.log("working");
-=======
+
 
 // const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2Ccity%20view";
 // async function getData ()
@@ -237,4 +236,3 @@ function showData(){
   elem.classList.add("showScreen");
 
 }
->>>>>>> master
