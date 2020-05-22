@@ -1,18 +1,27 @@
 //************************landing page***************************
 console.log("working");
 function select_crave(){               //function to run when user knows what they want
-  fade_out();
-  let elem = document.getElementById("head_text");
-  elem.innerHTML = "Tell us, what do you crave?";
-  createTags();
+
+  let bool = true;
+ fade_out();
+
+  setTimeout(function() {
+    //your code to be executed after 1 second
+
+
+      let elem = document.getElementById("head_text");
+      elem.innerHTML = "Tell us, what do you crave?";
+      createTags();
+      }, 500);
 }
 function random_choice(){               // function to run when user doesn't know what they want
   fade_out();
 }
+
 function fade_out(){                                     //fade out landing option buttons
   let btn = document.getElementsByClassName("landing");  //identify buttons
   let button_div = document.getElementById("container");  //identify button containers (necessary?)
-  let fading = setInterval(fade, 50);        // set and call interval fade: will run every 250 miliseconds
+  let fading = setInterval(fade, 50);        // set and call interval fade: will run every 50 miliseconds
   let new_opacity = .9;                      // set new opacity variable
   function fade(){                        //fade function (called by sestInterval
     if(new_opacity < 0){            //if opacity 0 or less clearInterval and delete buttons
@@ -20,6 +29,7 @@ function fade_out(){                                     //fade out landing opti
         btn[0].remove();        //reduce to one (now if only written once only one button is removed)
         btn[0].remove();
         clearInterval(fading);
+
       }
     } else {                         //loop to reduce opacity if opacity greater than zero
         for(let x of btn){           //reduces the opacity by .05
@@ -44,7 +54,7 @@ function createTags(){
 
     function initTags(c,a){
       let elem;
-      let tags = document.getElementById("forTags");
+      let tags = document.getElementById("tags");
       let tagX = (tags.getBoundingClientRect().left)/1.5;//initial left position
       let tagY = tags.getBoundingClientRect().top; //initial top possition
       let tagXinit = tagX;
@@ -112,6 +122,7 @@ function createTags(){
             y=e.clientY;//current position of the element
             active=false;//the element is diactivated for movment
             let bool = checkIfInsideBucket(e.target.id) // check if the buckt and the element are overlapping
+
           });
           function checkIfInsideBucket(id){
             let bucket = document.getElementById("bucket");
@@ -134,7 +145,8 @@ function createTags(){
     }
 }
 
-//************************end of dragging and dropping***************************
+// ************************end of dragging and dropping***************************
+<<<<<<< jfoodie
 
 
 //***********************start of working with API********************************
@@ -191,3 +203,38 @@ async function getData ()
 
 
    console.log("working");
+=======
+
+// const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2Ccity%20view";
+// async function getData ()
+// {
+//   return data = await fetch(url,{
+//       method: "GET",
+//       headers: {
+//         "user-key": "ea3a811e77479d2e846d38a5a819bf61",
+//         "accept":"application/jason"
+//       }
+//     }).then (respone =>  data = response.json())
+//       .then(dat=>{
+//           console.log(dat);
+//           console.log(dat["restaurants"]);
+//       } )
+// }
+// let output = getData();
+//   // console.log(output);
+
+
+//   console.log("working");
+
+
+function showData(){
+
+  let elem = document.getElementById("container");
+  elem.classList.add("hideScreen");
+  elem.classList.add("collapse");
+  elem=document.getElementById("data");
+  elem.classList.remove("hideScreen");
+  elem.classList.add("showScreen");
+
+}
+>>>>>>> master
