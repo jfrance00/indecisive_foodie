@@ -3,6 +3,8 @@ let ambiance = ['wifi','bar','cash'];
 var x = 0; // initial X when moving an element
 var y = 0;// initital Y when moving an element
 var active=false; // setting the active movalbe object
+let userInput = []; // array to store user input
+
 
 
 initTags(cousine,ambiance);//call function that creates the tags
@@ -95,14 +97,19 @@ function addListeners(elem){
 
 
 function addUserInputToArray(){
-  let userInput = [];
-  let ambiance = document.getElement
-    if()
-  return userInput
+  index
 }
 // https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi&cuisines=133
-// https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi%2C%20bar&cuisines=133
-// https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=wifi%2C%20cash&cuisines=133%2C%2045
+// one search element
+//&q=wifi
+//two
+//&q=wifi%2C%20british
+//three
+//&q=wifi%2C%20british%2C%20bar
+
+// %2C%20
+
+
 
 
 
