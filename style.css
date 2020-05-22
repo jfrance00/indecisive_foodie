@@ -8,13 +8,15 @@ h1{
 }
 
 #container {
+  margin: 10%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 10%;
 }
 
 button {
   height: 8em;
   width: 20em;
+  margin-top: 5%
+  margin-bottom: 5%;
 }
