@@ -160,12 +160,9 @@ function createTags(){
           }
     }
 }
-
 // ************************end of dragging and dropping***************************
 
 //************************* Random choices generator ********************************
-
-
 function randomizeFilter(){
   let addFilter = ['british','french','italian', 'wifi','bar','cash'];
   let numberChoices = addFilter.length                            //finds number of choices (more relevant with dynamic array)
@@ -178,8 +175,6 @@ function randomizeFilter(){
   }
   return addFilter;
 }
-
-
 //***********************start of working with API********************************
 
    // array variable that needs to be used for multiple  funciton calls
@@ -192,7 +187,6 @@ function addUserInputToArray(id){
    return addFilter;
   }
 }
-
 function removeUserInput(id){           //removes object from array on user action
   if(addFilter.includes(id)){
     let index = addFilter.indexOf(id);         //finds index
@@ -200,8 +194,6 @@ function removeUserInput(id){           //removes object from array on user acti
     return addFilter
     }
   }
-
-
 function createURL(){        //will be triggered by button when user is finished
   const url_head = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=";
   let link = url_head;
@@ -215,11 +207,9 @@ function createURL(){        //will be triggered by button when user is finished
   }
   getData(link);
 }
-
 async function getData (url)
 {
   if(document.getElementById("h3")==true){document.getElementById("h3").style.display="none";}
-
   showSpinner(true);
    return dat = await fetch(url,{
       method: "GET",
@@ -229,29 +219,27 @@ async function getData (url)
       }
     }).then (response =>  data = response.json())
       .then(dat=>{
-
         showSpinner(false);
         console.log("responding to data");
-
         printResults(dat["restaurants"]);
        } )
  }
  function showSpinner(bool){
     if(bool==true){
-
-      document.getElementById("spinner").style.display="block";
+      document.getElementById("wait").style.display="block";
       document.getElementById("spinner").style.animation="spin 2s infinite linear";
+      document.body.style.backgroundImage='url("")';
+      document.getElementById("heading").style.display="none";
     }
     else{
-      document.getElementById("spinner").style.display="none";
+      document.getElementById("wait").style.display="none";
       document.getElementById("spinner").style.animation="";
+    document.getElementById("heading").style.display="initial"
+    document.getElementById("h3").style.display="none";
     }
  }
 function showData(){
-
   let data = createURL();
-
-
   let elem = document.getElementById("container");
   elem.classList.add("hideScreen");
   elem.classList.add("collapse");
@@ -268,23 +256,8 @@ function printResults(data){
     let carouselItem
     let div = document.getElementById("data");
     let i=0;
-    // for(x of data){
-    //   console.log(x);
-    //   card = createCard();
-    //   card.firstElementChild.innerHTML ="Cousines: "+x["restaurant"]["cuisines"];
-    //   card.children[1].firstElementChild.innerHTML=x["restaurant"]["name"];
-    //   card.children[1].children[1].innerHTML = "Price range is "+x["restaurant"]["price_range"]+"/5, and average price for two is "+x["restaurant"]["average_cost_for_two"]+x["restaurant"]["currency"];
-    //   card.children[1].children[2].innerHTML = "Address: "+ x["restaurant"]["location"]["address"];
-    //   card.children[1].children[3].href=x["restaurant"]["url"];
-    //   card.children[2].innerHTML="Vibes: "+x["restaurant"]["highlights"];
-    //   div.appendChild(card);
-    // }
-
     for(x of data){
-
-
-    cardBlock =
-
+      cardBlock =
         ' <div class="card mt-2">'+
         '  <h5 class="card-header">'+x["restaurant"]["name"]+'</h5>'+
           '<div class="card-body">'+
@@ -309,15 +282,9 @@ function printResults(data){
                       '<span class="carousel-control-next-icon" aria-hidden="true"></span>'+
                     '  <span class="sr-only">Next</span>'+
                   '  </a></div></div> </div></div></div>';
-
-
-
                   div.innerHTML +=cardBlock;
                   i++;
                 }
-
-
-
 }
 
 function createCarouselItems(x){
@@ -336,36 +303,3 @@ function createCarouselItems(x){
    return carouselItem;
 
 }
-
-// function createCard(){
-//
-//     let  card =document.createElement("div");
-//     let  cardH =document.createElement("div");
-//     let  cardF =document.createElement("div");
-//     let  cardB =document.createElement("div");
-//     let  h = document.createElement("h5");
-//     let  p1 = document.createElement("p");
-//     let  p2 = document.createElement("p");
-//     let  a = document.createElement("a");
-//
-//      h.classList.add("card-title");
-//      p1.classList.add("card-text");
-//      p2.classList.add("card-text");
-//      a.classList.add("btn");
-//      a.setAttribute('target', '_blank');
-//      a.classList.add("btn-primary");
-//      a.innerHTML = "Full Review";
-//      cardB.classList.add("card-body");
-//      cardH.classList.add("card-header");
-//      cardF.classList.add("card-header");
-//      card.classList.add("card");
-//      card.classList.add("mt-2");
-//      cardB.appendChild(h);
-//      cardB.appendChild(p1);
-//      cardB.appendChild(p2);
-//      cardB.appendChild(a);
-//      card.appendChild(cardH);
-//      card.appendChild(cardB);
-//      card.appendChild(cardF);
-//      return card;
-// }

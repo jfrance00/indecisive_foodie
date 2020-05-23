@@ -112,25 +112,32 @@ body {
   max-width:600px !important;
   max-height:300px!important;
 }
+
+#wait{
+  display:none;
+  width: 300px;
+  height: 80px;
+  z-index:1000;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right: 0;
+  margin: auto;
+  text-align:center;
+  font-size:1.5em;
+  
+}
 #spinner{
-    display:none;
-     width: 80px;
-     height: 80px;
-     /* border: 2px solid #f3f3f3;
-     border-top:3px solid #f25a41;
-     border-radius: 100%; */
-     z-index:1000;
-     position: absolute;
-     top:0;
-     bottom:0;
-     left:0;
-     right: 0;
-     margin: auto;
      background-image:url("loader.png");
      background-size:cover;
-     /* animation:spin 1s infinite linear;
-     -webkit-animation-name:spin; */
+     width: 80px;
+     height: 80px;
+     z-index:1000;
+     margin: auto;
+
 }
+
 
 @keyframes spin{
      from {
