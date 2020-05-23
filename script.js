@@ -53,15 +53,37 @@ function fade_out(){                                     //fade out landing opti
           x.style.opacity = new_opacity; //display reduced opacity
           new_opacity = new_opacity - .05   //reduce opacity further
         }
-      } //end of if loop?
-    } //end of fade function
-  } //end of function
+      }                               //end of if loop
+    }                                 //end of fade function
+  }                                   //end of fade_out function
+
 
 //************************End of Langing page***************************
 
 //************************Dragging and dropping***************************
-function createTags(){
 
+//*****menu to go automatically to drag and drop******
+let goToTags = document.getElementById("goToTags")                //set event listener for "choose craves"
+goToTags.addEventListener("click", resetTags);
+
+function resetTags(){
+  clearPage();
+  createTags();
+}
+
+function clearPage(){
+  let elem = document.getElementById("container");
+  elem.classList.add("hideScreen");
+  // elem.classList.add("collapse");
+  elem.classList.remove("hideScreen");
+  elem.classList.remove("showScreen");
+}
+
+
+//*****end menu feature*****
+
+function createTags(){
+    console.log("arrived at createTags function");
     let x = 0; // initial X when moving an element
     let y = 0;// initital Y when moving an element
     let active=false; // setting the active movalbe object
@@ -167,14 +189,12 @@ function createTags(){
 
 
 function randomizeFilter(){
-  let addFilter = ['british','french','italian', 'wifi','bar','cash'];
+  let addFilter = cousine.concat(ambiance);                      //makes new array out of both condition arrays
   let numberChoices = addFilter.length                            //finds number of choices (more relevant with dynamic array)
-  let numberOfFilters = Math.floor(Math.random() * Math.floor(numberChoices));  //choses random number of filters
-  console.log(numberOfFilters);
+  let numberOfFilters = Math.floor(Math.random() * Math.floor(numberChoices));   //choses random number of filters to remove
   for (let i = 0; i < numberOfFilters; i++){
-    randomIndex = Math.floor(Math.random() * Math.floor(numberOfFilters-i));
+    randomIndex = Math.floor(Math.random() * Math.floor(numberOfFilters-i));  //removes one randon filter each loop
     addFilter.splice(randomIndex, 1);;
-    console.log(addFilter);
   }
   return addFilter;
 }
