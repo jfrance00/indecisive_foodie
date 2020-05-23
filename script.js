@@ -209,7 +209,7 @@ function createURL(){        //will be triggered by button when user is finished
 }
 async function getData (url)
 {
-  if(document.getElementById("h3")==true){document.getElementById("h3").style.display="none";}
+
   showSpinner(true);
    return dat = await fetch(url,{
       method: "GET",
@@ -235,7 +235,7 @@ async function getData (url)
       document.getElementById("wait").style.display="none";
       document.getElementById("spinner").style.animation="";
     document.getElementById("heading").style.display="initial"
-    document.getElementById("h3").style.display="none";
+      if(document.getElementById("h3")!=null){document.getElementById("h3").style.display="none";}
     }
  }
 function showData(){
