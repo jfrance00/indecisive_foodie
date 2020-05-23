@@ -218,8 +218,8 @@ function createURL(){        //will be triggered by button when user is finished
 
 async function getData (url)
 {
+  if(document.getElementById("h3")==true){document.getElementById("h3").style.display="none";}
 
-  document.getElementById("h3").style.display="none";
   showSpinner(true);
    return dat = await fetch(url,{
       method: "GET",
