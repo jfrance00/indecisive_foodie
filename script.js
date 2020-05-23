@@ -234,15 +234,16 @@ function printResults(data){
 
     cardBlock =
 
-        ' <div class="card">'+
-        '  <h5 class="card-header">'+x["restaurant"]["cuisines"]+'</h5>'+
+        ' <div class="card mt-2">'+
+        '  <h5 class="card-header">'+x["restaurant"]["name"]+'</h5>'+
           '<div class="card-body">'+
-          '  <h5 class="card-title">'+x["restaurant"]["name"]+'</h5>'+
+          '  <h5 class="card-title">'+x["restaurant"]["cuisines"]+'</h5>'+
           '  <div class="row myrow">'+
 
               '<div class="col-xl-6 col-lg-6">'+
               '  <p class="card-text">Price range is '+x["restaurant"]["price_range"]+'/5, and average price for two is '+x["restaurant"]["average_cost_for_two"]+x["restaurant"]["currency"]+'</p>'+
               '  <p class="card-text">Address: '+ x["restaurant"]["location"]["address"]+'</p>'+
+                '  <p class="card-text">Highlights: '+ x["restaurant"]["highlights"]+'</p>'+
               '  <a href='+x["restaurant"]["url"]+'" class="btn btn-primary">Full review</a></div>'+
 
                 '<div class="col-xl-6 col-lg-6" >'+
