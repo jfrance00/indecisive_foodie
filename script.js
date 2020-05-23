@@ -199,8 +199,6 @@ function createURL(){        //will be triggered by button when user is finished
   getData(link);
 }
 
-
-// const url = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=british%2C";
 async function getData (url)
 {
    return dat = await fetch(url,{
@@ -227,41 +225,112 @@ function showData(){
   elem.classList.remove("hideScreen");
   elem.classList.add("showScreen");
 
+  elem = document.getElementById("head_text");
+  elem.innerHTML = "Your Crave List";
 }
-
 function printResults(data){
-    console.log(data);
-    console.log(data[0]["restaurant"]);
-    let card;
+    // console.log(data);
+     console.log(data[0]["restaurant"]);
+    let cardBlock;
+    let carouselItem
     let div = document.getElementById("data");
+    let i=0;
+    // for(x of data){
+    //   console.log(x);
+    //   card = createCard();
+    //   card.firstElementChild.innerHTML ="Cousines: "+x["restaurant"]["cuisines"];
+    //   card.children[1].firstElementChild.innerHTML=x["restaurant"]["name"];
+    //   card.children[1].children[1].innerHTML = "Price range is "+x["restaurant"]["price_range"]+"/5, and average price for two is "+x["restaurant"]["average_cost_for_two"]+x["restaurant"]["currency"];
+    //   card.children[1].children[2].innerHTML = "Address: "+ x["restaurant"]["location"]["address"];
+    //   card.children[1].children[3].href=x["restaurant"]["url"];
+    //   card.children[2].innerHTML="Vibes: "+x["restaurant"]["highlights"];
+    //   div.appendChild(card);
+    // }
+
     for(x of data){
-      card = createCard();
 
-    }
+
+    cardBlock =
+
+        ' <div class="card">'+
+        '  <h5 class="card-header">'+x["restaurant"]["cuisines"]+'</h5>'+
+          '<div class="card-body">'+
+          '  <h5 class="card-title">'+x["restaurant"]["name"]+'</h5>'+
+          '  <div class="row myrow">'+
+
+              '<div class="col-xl-6 col-lg-6">'+
+              '  <p class="card-text">Price range is '+x["restaurant"]["price_range"]+'/5, and average price for two is '+x["restaurant"]["average_cost_for_two"]+x["restaurant"]["currency"]+'</p>'+
+              '  <p class="card-text">Address: '+ x["restaurant"]["location"]["address"]+'</p>'+
+              '  <a href='+x["restaurant"]["url"]+'" class="btn btn-primary">Full review</a></div>'+
+
+                '<div class="col-xl-6 col-lg-6" >'+
+                '  <div id="carouselControls'+i+'" class="carousel slide" data-ride="carousel" >'+
+                  '  <div class="carousel-inner">'+
+                      createCarouselItems(x["restaurant"]["photos"])+
+                    '</div>'+
+                    '<a class="carousel-control-prev" href="#carouselControls'+i+'" role="button" data-slide="prev">'+
+                    '  <span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
+                    '  <span class="sr-only">Previous</span></a>'+
+                    '<a class="carousel-control-next" href="#carouselControls'+i+'" role="button" data-slide="next">'+
+                      '<span class="carousel-control-next-icon" aria-hidden="true"></span>'+
+                    '  <span class="sr-only">Next</span>'+
+                  '  </a></div></div> </div></div></div>';
+
+
+
+                  div.innerHTML +=cardBlock;
+                  i++;
+                }
+
+
 
 }
 
-function createCard(){
+function createCarouselItems(x){
+  let carouselItem='';
+  for (y of x){
+    if(x.indexOf(y) == 0){
+       carouselItem+='<div class="carousel-item active">'+
+       '  <img src="'+y["photo"]["url"]+'" class="d-block w-100" ></div>';
+      }
+      else{
+        carouselItem+='<div class="carousel-item">'+
+        '  <img src="'+y["photo"]["url"]+'" class="d-block w-100" ></div>';
+      }
 
-    let  card =document.createElement("div");
-    let  cardH =document.createElement("div");
-    let  cardB =document.createElement("div");
-    let  h = document.createElement("h5");
-    let  p = document.createElement("p");
-    let  a = document.createElement("a");
+   }
+   return carouselItem;
 
-     h.classList.add("card-title");
-     p.classList.add("card-text");
-     a.classList.add("btn btn-primary");
-     cardB.classList.add("card-body");
-     cardH.classList.add("card-header");
-     card.classList.add("card");
-     cardB.appendChild(h);
-     cardB.appendChild(p);
-     cardB.appendChild(a);
-     card.appendChild(cardH);
-     card.appendChild(cardB);
-
-
-     return card;
 }
+// function createCard(){
+//
+//     let  card =document.createElement("div");
+//     let  cardH =document.createElement("div");
+//     let  cardF =document.createElement("div");
+//     let  cardB =document.createElement("div");
+//     let  h = document.createElement("h5");
+//     let  p1 = document.createElement("p");
+//     let  p2 = document.createElement("p");
+//     let  a = document.createElement("a");
+//
+//      h.classList.add("card-title");
+//      p1.classList.add("card-text");
+//      p2.classList.add("card-text");
+//      a.classList.add("btn");
+//      a.setAttribute('target', '_blank');
+//      a.classList.add("btn-primary");
+//      a.innerHTML = "Full Review";
+//      cardB.classList.add("card-body");
+//      cardH.classList.add("card-header");
+//      cardF.classList.add("card-header");
+//      card.classList.add("card");
+//      card.classList.add("mt-2");
+//      cardB.appendChild(h);
+//      cardB.appendChild(p1);
+//      cardB.appendChild(p2);
+//      cardB.appendChild(a);
+//      card.appendChild(cardH);
+//      card.appendChild(cardB);
+//      card.appendChild(cardF);
+//      return card;
+// }

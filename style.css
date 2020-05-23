@@ -78,7 +78,11 @@ button {
   transform: translate(0px, 0px);
 
 }
-
+.myrow{
+  display:flex;
+  flex-direction:row;
+}
 .carousel-item{
-height:400px;
+  max-width:600px !important;
+  max-height:300px!important;
 }
