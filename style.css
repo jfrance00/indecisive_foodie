@@ -2,13 +2,22 @@ html, body{
   height:100%;
 }
 body {
-  background-color: #FFFCDE;
+  background-image:url("background1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+#heading{
+  margin-top:100px;
+}
+.head_text{
+  text-align: center;
+  font-size:4em;
+}
+#head_text{
+  padding-top: 1em;
 }
 
-h1{
-  text-align: center;
-  padding-top: 2em;
-}
 #container {
   display: flex;
   justify-content: space-around;
@@ -16,21 +25,28 @@ h1{
   height:60%;
 }
 
-button {
-  height: 8em;
-  width: 20em;
+.landing{
   margin-top: 5%;
   margin-bottom: 5%;
+  height: 8em;
+  width: 20em;
+
+}
+.landing span{
+  font-size:1.5em;
 }
 .before-tags{
 
 }
 .for-tags{
   display:none;
-  height:60%;
+  height:80%;
 }
 .row{
   height:100%;
+  flex-direction:row;
+  flex-wrap:nowrap;
+
 }
 .tags{
 
@@ -42,31 +58,41 @@ button {
 
 }
 .tag{
-  width:70px;
-  height:70px;
-  background-color:blue;
-  margin:10px;
+  background-color:firebrick;
+  width:90px;
+  line-height: 2;
+  color:ghostwhite;
+  border-radius:15px;
   position:absolute !important;
+  box-shadow: 3px 2px grey;
+
 }
 
 .bucket{
-  background-color:red;
-  width:15vw;
+  /* background-color:red; */
+  width:45vw;
   height:100%;
   margin:auto;
-
+  transform:translateY(-50px);
   /* border:2px solid black; */
-    clip-path: polygon(0 0, 100% 0, 72% 100%, 33% 100%);
+  clip-path: polygon(100% 1%, 0% 1%, 0% 15%, 0% 62%, 2% 69%, 5% 71%, 9% 78%, 13% 80%, 18% 86%, 22% 88%, 25% 93%, 33% 97%, 39% 100%, 48% 100%, 55% 100%, 65% 100%, 77% 94%, 86% 89%, 94% 82%, 100% 78%);
+
 }
 
 .btn-crave{
   width:5em;
-  height:2em;
+  height:5em;
   font-size:1.5em;
+  background-image:url("crave.png");
+  background-size: cover;
+  background-color:grey;
+  color:white;
+
+
 }
 .hideScreen{
   transition:all 1s linear;
-  transform:translate(-1250px, 0px);
+  transform:translate(-1500px, 0px);
 
 }
 .collapse{
@@ -86,3 +112,28 @@ button {
   max-width:600px !important;
   max-height:300px!important;
 }
+.spinner{
+    display:none;
+     width: 80px;
+     height: 80px;
+     border: 2px solid #f3f3f3;
+     border-top:3px solid #f25a41;
+     border-radius: 100%;
+     z-index:1000%;
+     position: absolute;
+     top:25%;
+     bottom:0;
+     left:25%;
+     right: 0;
+     margin: auto;
+     /* animation:spin 1s infinite linear;
+     -webkit-animation-name:spin; */
+}
+
+@keyframes spin{
+     from {
+         transform: rotate(0deg);
+     } to {
+         transform: rotate(360deg);
+     }
+  }
