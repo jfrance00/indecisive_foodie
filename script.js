@@ -19,6 +19,7 @@ function random_choice(){               // function to run when user doesn't kno
   fade_out();
   randomizeFilter();
   createURL();
+  showData();
 }
 
 function fade_out(){                                     //fade out landing option buttons
@@ -185,7 +186,6 @@ function removeUserInput(id){           //removes object from array on user acti
 
 
 function createURL(){        //will be triggered by button when user is finished
-
   const url_head = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=";
   let link = url_head;
   for (let i =0; i<addFilter.length;i++){
@@ -209,12 +209,11 @@ async function getData (url)
       }
     }).then (response =>  data = response.json())
       .then(dat=>{
-
+        console.log("responding to data");
         printResults(dat["restaurants"]);
        } )
  }
 function showData(){
-
   let data = createURL();
 
 
@@ -229,7 +228,6 @@ function showData(){
   elem.innerHTML = "Your Crave List";
 }
 function printResults(data){
-    // console.log(data);
      console.log(data[0]["restaurant"]);
     let cardBlock;
     let carouselItem
@@ -302,6 +300,7 @@ function createCarouselItems(x){
    return carouselItem;
 
 }
+
 // function createCard(){
 //
 //     let  card =document.createElement("div");
