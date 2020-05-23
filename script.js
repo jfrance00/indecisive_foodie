@@ -238,12 +238,13 @@ async function getData (url)
  }
  function showSpinner(bool){
     if(bool==true){
-      console.log("hi");
+
       document.getElementById("spinner").style.display="block";
-      document.getElementById("spinner").style.animation="spin 1s infinite linear";
+      document.getElementById("spinner").style.animation="spin 2s infinite linear";
     }
     else{
-      document.getElementById("spinner").style.visibility="none";
+      document.getElementById("spinner").style.display="none";
+      document.getElementById("spinner").style.animation="";
     }
  }
 function showData(){
