@@ -1,8 +1,14 @@
 //************************landing page***************************
+let cousine=['british','french','italian', 'American', 'Indian','Sushi'];
+let ambiance = ['Wifi','Bar','Cash','Fullbar','Breakfast','Dinner'];
+let addFilter = [];
 
 function select_crave(){               //function to run when user knows what they want
 
   let bool = true;
+  document.body.style.backgroundImage = "url('background2.jpg')";
+  let heading = document.getElementById("heading");
+  heading.style.marginTop="0px";
  fade_out();
 
   setTimeout(function() {
@@ -11,6 +17,13 @@ function select_crave(){               //function to run when user knows what th
 
       let elem = document.getElementById("head_text");
       elem.innerHTML = "Tell us, what do you crave?";
+      elem.style.fontSize="2.5em";
+      let h3 = document.createElement("h3");
+      h3.innerHTML = "(drag the tags into the bowl)";
+      h3.classList.add("head_text");
+      h3.id="h3";
+      h3.style.fontSize="1.5em";
+      heading.appendChild(h3);
       createTags();
       }, 500);
 }
@@ -44,8 +57,7 @@ function fade_out(){                                     //fade out landing opti
 
 //************************Dragging and dropping***************************
 function createTags(){
-    let cousine=['british','french','italian'];
-    let ambiance = ['wifi','bar','cash'];
+
     let x = 0; // initial X when moving an element
     let y = 0;// initital Y when moving an element
     let active=false; // setting the active movalbe object
@@ -59,6 +71,7 @@ function createTags(){
       let tagY = tags.getBoundingClientRect().top; //initial top possition
       let tagXinit = tagX;
       let tagYinit = tagY;
+      let i = 1;
       for (z of cousine){ //loop for coursine tags
           elem = document.createElement("div");
           elem.classList.add("tag");
@@ -71,10 +84,11 @@ function createTags(){
           elem.innerHTML = z;
           addListeners(elem);
           tags.appendChild(elem);
-          tagX = tagX + 100;
-
+          tagX = tagXinit + 100*(i%3);
+          tagY=tagYinit+100*Math.floor(i/3);
+          i++;
       }
-      tagY = tagYinit+100;
+      tagY=tagYinit+100*Math.floor(i/3);
       tagX = tagXinit;
       for (z of ambiance){
         elem = document.createElement("div");
@@ -88,7 +102,9 @@ function createTags(){
         elem.innerHTML = z;
         addListeners(elem);
         tags.appendChild(elem);
-        tagX = tagX + 100;
+        tagX = tagXinit + 100*(i%3);
+        tagY=tagYinit+100*Math.floor(i/3);
+        i++;
       }
     }
     function addListeners(elem){
@@ -100,10 +116,11 @@ function createTags(){
                 x=e.clientX-offsetX;// current x position of the element
                 y=e.clientY-offsetY;// current y position of the element
                 active=true;// this element is active in movement
+                elem.style.zIndex="1000";
           });
           elem.addEventListener("mousemove",function(e){  //addition of the mouse move listener
             e.preventDefault();
-            if(active){
+            if(active==true){
               let elem =document.getElementById(e.target.id);
               elem.style.left=e.clientX-x +"px"; //new position of the element
               elem.style.top=e.clientY-y+"px";//new position of the element
@@ -117,7 +134,7 @@ function createTags(){
             y=e.clientY;//current position of the element
             active=false;//the element is diactivated for movment
             let bool = checkIfInsideBucket(e.target.id) // check if the buckt and the element are overlapping
-
+            elem.style.zIndex="10";
           });
           function checkIfInsideBucket(id){
             let bucket = document.getElementById("bucket");
@@ -143,7 +160,7 @@ function createTags(){
 
 //***********************start of working with API********************************
 
-let addFilter = [];    // array variable that needs to be used for multiple  funciton calls
+   // array variable that needs to be used for multiple  funciton calls
 
 function addUserInputToArray(id){
   console.log("making array");        //TODO: need to check for duplicated
@@ -184,6 +201,9 @@ function createURL(){        //will be triggered by button when user is finished
 
 async function getData (url)
 {
+
+  document.getElementById("h3").style.display="none";
+  showSpinner(true);
    return dat = await fetch(url,{
       method: "GET",
       headers: {
@@ -192,11 +212,22 @@ async function getData (url)
       }
     }).then (response =>  data = response.json())
       .then(dat=>{
-
+        showSpinner(false);
         printResults(dat["restaurants"]);
        } )
  }
+ function showSpinner(bool){
+    if(bool==true){
+      console.log("hi");
+      document.getElementById("spinner").style.display="block";
+      document.getElementById("spinner").style.animation="spin 1s infinite linear";
+    }
+    else{
+      document.getElementById("spinner").style.visibility="none";
+    }
+ }
 function showData(){
+
 
   let data = createURL();
 
