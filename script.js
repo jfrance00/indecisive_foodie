@@ -27,19 +27,23 @@ function select_crave(){               //function to run when user knows what th
       createTags();
       }, 500);
 }
+
 function random_choice(){               // function to run when user doesn't know what they want
   fade_out();
+  randomizeFilter();
+  createURL();
+  showData();
 }
 
 function fade_out(){                                     //fade out landing option buttons
   let btn = document.getElementsByClassName("landing");  //identify buttons
   let button_div = document.getElementById("container");  //identify button containers (necessary?)
-  let fading = setInterval(fade, 50);        // set and call interval fade: will run every 50 miliseconds
-  let new_opacity = .9;                      // set new opacity variable
-  function fade(){                        //fade function (called by sestInterval
-    if(new_opacity < 0){            //if opacity 0 or less clearInterval and delete buttons
+  let fading = setInterval(fade, 50);                    // set and call interval fade: will run every 50 miliseconds
+  let new_opacity = .9;                                  // set new opacity variable
+  function fade(){                                       //fade function (called by sestInterval
+    if(new_opacity < 0){                                 //if opacity 0 or less clearInterval and delete buttons
       for(let y of btn){
-        btn[0].remove();        //reduce to one (now if only written once only one button is removed)
+        btn[0].remove();                                //reduce to one (now if only written once only one button is removed)
         btn[0].remove();
         clearInterval(fading);
 
@@ -76,6 +80,7 @@ function createTags(){
           elem = document.createElement("div");
           elem.classList.add("tag");
           elem.classList.add("btn");
+          elem.classList.add("choices")
           elem.id = z;
           elem.style.left=tagX+10+"px";
           elem.style.top=tagY+"px";
@@ -94,6 +99,7 @@ function createTags(){
         elem = document.createElement("div");
         elem.classList.add("tag");
         elem.classList.add("btn");
+        elem.classList.add("choices")
         elem.id = z;
         elem.style.left=tagX+10+"px";
         elem.style.top=tagY+10+"px";
@@ -157,35 +163,46 @@ function createTags(){
 
 // ************************end of dragging and dropping***************************
 
+//************************* Random choices generator ********************************
+
+
+function randomizeFilter(){
+  let addFilter = ['british','french','italian', 'wifi','bar','cash'];
+  let numberChoices = addFilter.length                            //finds number of choices (more relevant with dynamic array)
+  let numberOfFilters = Math.floor(Math.random() * Math.floor(numberChoices));  //choses random number of filters
+  console.log(numberOfFilters);
+  for (let i = 0; i < numberOfFilters; i++){
+    randomIndex = Math.floor(Math.random() * Math.floor(numberOfFilters-i));
+    addFilter.splice(randomIndex, 1);;
+    console.log(addFilter);
+  }
+  return addFilter;
+}
+
 
 //***********************start of working with API********************************
 
    // array variable that needs to be used for multiple  funciton calls
 
 function addUserInputToArray(id){
-  console.log("making array");        //TODO: need to check for duplicated
-  if (addFilter.includes(id)){
+  if (addFilter.includes(id)){              //TODO: need to check for duplicated
     return;
   } else {
    addFilter.push(id);
-   console.log(addFilter);
    return addFilter;
   }
 }
 
 function removeUserInput(id){           //removes object from array on user action
   if(addFilter.includes(id)){
-    console.log("was in bucket");
-    let index = addFilter.indexOf(id);
-    addFilter.splice(index, 1);
-    console.log(addFilter);
+    let index = addFilter.indexOf(id);         //finds index
+    addFilter.splice(index, 1);                //removes index
     return addFilter
     }
   }
 
 
 function createURL(){        //will be triggered by button when user is finished
-
   const url_head = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=";
   let link = url_head;
   for (let i =0; i<addFilter.length;i++){
@@ -212,7 +229,10 @@ async function getData (url)
       }
     }).then (response =>  data = response.json())
       .then(dat=>{
+
         showSpinner(false);
+        console.log("responding to data");
+
         printResults(dat["restaurants"]);
        } )
  }
@@ -228,7 +248,6 @@ async function getData (url)
  }
 function showData(){
 
-
   let data = createURL();
 
 
@@ -243,7 +262,6 @@ function showData(){
   elem.innerHTML = "Your Crave List";
 }
 function printResults(data){
-    // console.log(data);
      console.log(data[0]["restaurant"]);
     let cardBlock;
     let carouselItem
@@ -262,6 +280,7 @@ function printResults(data){
     // }
 
     for(x of data){
+
 
     cardBlock =
 
@@ -316,6 +335,7 @@ function createCarouselItems(x){
    return carouselItem;
 
 }
+
 // function createCard(){
 //
 //     let  card =document.createElement("div");
