@@ -287,7 +287,7 @@ function printResults(data){
               '  <p class="card-text">Price range is '+x["restaurant"]["price_range"]+'/5, and average price for two is '+x["restaurant"]["average_cost_for_two"]+x["restaurant"]["currency"]+'</p>'+
               '  <p class="card-text">Address: '+ x["restaurant"]["location"]["address"]+'</p>'+
                 '  <p class="card-text">Highlights: '+ x["restaurant"]["highlights"]+'</p>'+
-              '  <a href='+x["restaurant"]["url"]+'" class="btn btn-primary">Full review</a></div>'+
+              '  <a href='+x["restaurant"]["url"]+'" target="_blank" class="btn btn-primary">Full review</a></div>'+
 
                 '<div class="col-xl-6 col-lg-6" >'+
                 '  <div id="carouselControls'+i+'" class="carousel slide" data-ride="carousel" >'+
