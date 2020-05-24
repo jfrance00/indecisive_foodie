@@ -1,7 +1,7 @@
 //************************landing page***************************
-let cousine=['british','french','italian', 'American', 'Indian','Sushi'];
-let ambiance = ['Wifi','Bar','Cash','Fullbar','Breakfast','Dinner'];
-let addFilter = [];
+let cousine=['british','french','italian', 'American', 'Indian','Sushi']; //list if cousine tags
+let ambiance = ['Wifi','Bar','Cash','Fullbar','Breakfast','Dinner'];//list of feature tags
+let addFilter = []; //global array for filtering of tags 
 
 function select_crave(){               //function to run when user knows what they want
 
@@ -9,17 +9,17 @@ function select_crave(){               //function to run when user knows what th
   document.body.style.backgroundImage = "url('background2.jpg')";
   let heading = document.getElementById("heading");
   heading.style.marginTop="0px";
- fade_out();
+ fade_out(); //fade out of the buttons
 
-  setTimeout(function() {
+  setTimeout(function() { //
     //your code to be executed after 1 second
 
 
       let elem = document.getElementById("head_text");
-      elem.innerHTML = "Tell us, what do you crave?";
+      elem.innerHTML = "Tell us, what do you crave?"; //change the header text
       elem.style.fontSize="2.5em";
       let h3 = document.createElement("h3");
-      h3.innerHTML = "(drag the tags into the bowl)";
+      h3.innerHTML = "(drag the tags into the bowl)"; //add second line for header text
       h3.classList.add("head_text");
       h3.id="h3";
       h3.style.fontSize="1.5em";
@@ -53,15 +53,37 @@ function fade_out(){                                     //fade out landing opti
           x.style.opacity = new_opacity; //display reduced opacity
           new_opacity = new_opacity - .05   //reduce opacity further
         }
-      } //end of if loop?
-    } //end of fade function
-  } //end of function
+      }                               //end of if loop
+    }                                 //end of fade function
+  }                                   //end of fade_out function
+
 
 //************************End of Langing page***************************
 
 //************************Dragging and dropping***************************
-function createTags(){
 
+//*****menu to go automatically to drag and drop******
+// let goToTags = document.getElementById("goToTags")                //will be link back to "choose craves"
+// goToTags.addEventListener("click", resetTags);
+//
+// function resetTags(){
+//   clearPage();
+//   createTags();
+// }
+//
+// function clearPage(){
+//   let elem = document.getElementById("container");
+//   elem.classList.add("hideScreen");
+//   // elem.classList.add("collapse");
+//   elem.classList.remove("hideScreen");
+//   elem.classList.remove("showScreen");
+// }
+
+
+//*****end menu feature*****
+
+function createTags(){
+    console.log("arrived at createTags function");
     let x = 0; // initial X when moving an element
     let y = 0;// initital Y when moving an element
     let active=false; // setting the active movalbe object
@@ -73,8 +95,8 @@ function createTags(){
       let tags = document.getElementById("tags");
       let tagX = (tags.getBoundingClientRect().left)/1.5;//initial left position
       let tagY = tags.getBoundingClientRect().top; //initial top possition
-      let tagXinit = tagX;
-      let tagYinit = tagY;
+      let tagXinit = tagX; //inital placement the first tag
+      let tagYinit = tagY;//inital placement the first tag
       let i = 1;
       for (z of cousine){ //loop for coursine tags
           elem = document.createElement("div");
@@ -89,8 +111,8 @@ function createTags(){
           elem.innerHTML = z;
           addListeners(elem);
           tags.appendChild(elem);
-          tagX = tagXinit + 100*(i%3);
-          tagY=tagYinit+100*Math.floor(i/3);
+          tagX = tagXinit + 100*(i%3); //placemnet of the current tag- restarts the offset of the "left" property each 3 tags
+          tagY=tagYinit+100*Math.floor(i/3); //placement of the current tag - incriment the offset of the "top" property every 3 tags
           i++;
       }
       tagY=tagYinit+100*Math.floor(i/3);
@@ -164,12 +186,11 @@ function createTags(){
 
 //************************* Random choices generator ********************************
 function randomizeFilter(){
-  let addFilter = ['british','french','italian', 'wifi','bar','cash'];
-  let numberChoices = addFilter.length                            //finds number of choices (more relevant with dynamic array)
-  let numberOfFilters = Math.floor(Math.random() * Math.floor(numberChoices));  //choses random number of filters
-  console.log(numberOfFilters);
+  let addFilter = cousine.concat(ambiance);                      //makes new array out of both condition arrays
+  let numberChoices = addFilter.length                           //finds number of choices
+  let numberOfFilters = Math.floor(Math.random() * Math.floor(numberChoices));   //choses random number of filters to remove
   for (let i = 0; i < numberOfFilters; i++){
-    randomIndex = Math.floor(Math.random() * Math.floor(numberOfFilters-i));
+    randomIndex = Math.floor(Math.random() * Math.floor(numberOfFilters-i));  //removes one randon filter each loop
     addFilter.splice(randomIndex, 1);;
     console.log(addFilter);
   }
@@ -197,66 +218,64 @@ function removeUserInput(id){           //removes object from array on user acti
 function createURL(){        //will be triggered by button when user is finished
   const url_head = "https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&q=";
   let link = url_head;
-  for (let i =0; i<addFilter.length;i++){
+  for (let i = 0; i<addFilter.length;i++){
     if( i<addFilter.length-1){
-        link=link+addFilter[i]+"%2C%20";
+        link=link+addFilter[i]+"%2C%20"; //concatenate special charecter for the URL (  =", ") 
       }
       else{
-        link=link+addFilter[i];
+        link=link+addFilter[i]; // if last item, enter the tag without the special charecter
       }
   }
   getData(link);
 }
-async function getData (url)
+async function getData (url) // function that gets data from the API - async means it runs asynchronous for the rest of the code (important for the await function)
 {
 
-  showSpinner(true);
+  showSpinner(true); //shows the spinning waiting icon
    return dat = await fetch(url,{
       method: "GET",
       headers: {
-        "user-key": "ea3a811e77479d2e846d38a5a819bf61",
-        "accept":"application/jason"
+        "user-key": "ea3a811e77479d2e846d38a5a819bf61", //unique key for the API
+        "accept":"application/jason" // the returned data will be JSON compatible
       }
-    }).then (response =>  data = response.json())
+    }).then (response =>  data = response.json()) //parse the return data to JSON
       .then(dat=>{
-        showSpinner(false);
-        console.log("responding to data");
-        printResults(dat["restaurants"]);
+        showSpinner(false); //hide the waiting spinner
+        printResults(dat["restaurants"]); // print the results
        } )
  }
  function showSpinner(bool){
     if(bool==true){
-      document.getElementById("wait").style.display="block";
-      document.getElementById("spinner").style.animation="spin 2s infinite linear";
-      document.body.style.backgroundImage='url("")';
-      document.getElementById("heading").style.display="none";
+      document.getElementById("wait").style.display="block"; //displa the spinner 
+      document.getElementById("spinner").style.animation="spin 2s infinite linear";//set the animation
+      document.body.style.backgroundImage='url("")'; // remove the background image
+      document.getElementById("heading").style.display="none"; // remove the heading text
     }
     else{
-      document.getElementById("wait").style.display="none";
-      document.getElementById("spinner").style.animation="";
-    document.getElementById("heading").style.display="initial"
-      if(document.getElementById("h3")!=null){document.getElementById("h3").style.display="none";}
+      document.getElementById("wait").style.display="none"; // hide the spinner
+      document.getElementById("spinner").style.animation=""; //stop the animation so it won't continue in the background
+    document.getElementById("heading").style.display="initial" // return display of the heading
+      if(document.getElementById("h3")!=null){document.getElementById("h3").style.display="none";}//remove the secondary heading if it exists
     }
  }
-function showData(){
-  let data = createURL();
-  let elem = document.getElementById("container");
-  elem.classList.add("hideScreen");
+function showData(){ //print the collected data from the API
+  let data = createURL(); //creation of the data
+  let elem = document.getElementById("container"); 
+  elem.classList.add("hideScreen"); //remove the main container of previous screen
   elem.classList.add("collapse");
   elem=document.getElementById("data");
-  elem.classList.remove("hideScreen");
+  elem.classList.remove("hideScreen");//bring the outout data to screen
   elem.classList.add("showScreen");
 
   elem = document.getElementById("head_text");
-  elem.innerHTML = "Your Crave List";
+  elem.innerHTML = "Your Crave List"; // change the header text
 }
 function printResults(data){
-     console.log(data[0]["restaurant"]);
     let cardBlock;
     let carouselItem
     let div = document.getElementById("data");
     let i=0;
-    for(x of data){
+    for(x of data){ //print in loop the entire card object with variables as data from the api
       cardBlock =
         ' <div class="card mt-2">'+
         '  <h5 class="card-header">'+x["restaurant"]["name"]+'</h5>'+
@@ -268,12 +287,12 @@ function printResults(data){
               '  <p class="card-text">Price range is '+x["restaurant"]["price_range"]+'/5, and average price for two is '+x["restaurant"]["average_cost_for_two"]+x["restaurant"]["currency"]+'</p>'+
               '  <p class="card-text">Address: '+ x["restaurant"]["location"]["address"]+'</p>'+
                 '  <p class="card-text">Highlights: '+ x["restaurant"]["highlights"]+'</p>'+
-              '  <a href='+x["restaurant"]["url"]+'" class="btn btn-primary">Full review</a></div>'+
+              '  <a href='+x["restaurant"]["url"]+'" target="_blank" class="btn btn-primary">Full review</a></div>'+
 
                 '<div class="col-xl-6 col-lg-6" >'+
                 '  <div id="carouselControls'+i+'" class="carousel slide" data-ride="carousel" >'+
                   '  <div class="carousel-inner">'+
-                      createCarouselItems(x["restaurant"]["photos"])+
+                      createCarouselItems(x["restaurant"]["photos"])+ // addition of the pictures carousel
                     '</div>'+
                     '<a class="carousel-control-prev" href="#carouselControls'+i+'" role="button" data-slide="prev">'+
                     '  <span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
@@ -287,11 +306,11 @@ function printResults(data){
                 }
 }
 
-function createCarouselItems(x){
+function createCarouselItems(x){ // pictures carousel addition - input is an array of picture URLs from the API
   let carouselItem='';
   for (y of x){
-    if(x.indexOf(y) == 0){
-       carouselItem+='<div class="carousel-item active">'+
+    if(x.indexOf(y) == 0){ //loop to add each individual item
+       carouselItem+='<div class="carousel-item active">'+ 
        '  <img src="'+y["photo"]["url"]+'" class="d-block w-100" ></div>';
       }
       else{
